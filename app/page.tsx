@@ -1,10 +1,9 @@
-import TeamInput from "./components/TeamInput";
+import TeamForm from "./components/TeamForm";
 
 export default function Home() {
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
-      <TeamInput label="BLUE" color="blue" type="text" />
-      <TeamInput label="RED" color="red" type="text" />
+    <div className="flex justify-center items-center h-screen">
+      <TeamForm />
     </div>
   );
 }
