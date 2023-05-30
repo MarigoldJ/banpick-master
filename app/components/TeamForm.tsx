@@ -1,15 +1,12 @@
 "use client";
 
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
-import { useState } from "react";
 
 import SubmitButton from "./SubmitButton";
 import TeamInput from "./TeamInput";
-import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const TeamForm = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const {
     register,
     handleSubmit,
@@ -20,12 +17,14 @@ const TeamForm = () => {
       redName: "",
     },
   });
+  const router = useRouter();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    setIsLoading(true);
-    console.log(data);
-    // TODO: send data to DB.
-    setIsLoading(false);
+  const onSubmit: SubmitHandler<FieldValues> = (data: FieldValues) => {
+    // TODO: 다중 접속 가능한 밴픽 게임페이지로 연결하는 기능 추가.
+
+    return router.push(
+      `/game?blueName=${data.blueName}&redName=${data.redName}`
+    );
   };
 
   return (
