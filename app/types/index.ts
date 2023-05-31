@@ -15,3 +15,13 @@ export type ChampType = {
   tags: string[];
   title: string;
 };
+
+export type GameType = {
+  isBlueReady: boolean;
+  isRedReady: boolean;
+  phase: number;
+  blueName: string;
+  redName: string;
+  lastTime: number;
+  selected: Array<string>;
+};
