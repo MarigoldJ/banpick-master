@@ -17,7 +17,7 @@ const initialGame: GameType = {
   blueName: "",
   redName: "",
   lastTime: Date.now(),
-  selected: Array.from({ length: 20 }, () => ""),
+  selected: Array.from({ length: 21 }, () => ""),
 };
 
 const useGame = create<GameStore>((set) => ({
