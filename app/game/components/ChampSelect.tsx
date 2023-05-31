@@ -28,7 +28,7 @@ const ChampSelect: React.FC<ChampSelectProps> = ({ version }) => {
       <div className="w-full mx-2 pt-10 grid grid-cols-7 gap-5">
         {/* add ChampCell */}
         {champList.map((champData) => (
-          <ChampSelectCell champ={champData} />
+          <ChampSelectCell champ={champData} key={`cell-${champData.id}`} />
         ))}
       </div>
     </div>
