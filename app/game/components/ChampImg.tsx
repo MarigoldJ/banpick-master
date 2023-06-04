@@ -19,25 +19,25 @@ const ChampImg: React.FC<ChampImgProps> = ({ type, champId, alt }) => {
         width={120}
         height={120}
         src={srcUrl}
-        alt={`${alt}-${champId}`}
+        alt={`${alt}-${champId}-square`}
         placeholder="blur"
         blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAQAAACTbf5ZAAAAiklEQVR42u3PMQEAAAwCoNm/9Cr4Cw3IjYmwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsHDrASUpAHnJhbktAAAAAElFTkSuQmCC"
       />
     );
   }
   if (type === "horizon") {
-    // TODO: 이미지 URL 변경하고, 크기에 따라서 Image에 들어가는 크기 변경하기.
     const srcUrl = champId
-      ? `http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champId}.png`
-      : "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAQAAACTbf5ZAAAAiklEQVR42u3PMQEAAAwCoNm/9Cr4Cw3IjYmwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsHDrASUpAHnJhbktAAAAAElFTkSuQmCC";
+      ? `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champId}_0.jpg`
+      : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABL8AAAABCAQAAACV+sQKAAAAGUlEQVR42u3BIQEAAAACIP1/2hcmoAEA4GgS/gACWB//IAAAAABJRU5ErkJggg==";
     image = (
       <Image
-        width={120}
-        height={120}
+        width={1215}
+        height={717}
         src={srcUrl}
-        alt={`${alt}-${champId}`}
+        alt={`${alt}-${champId}-horizon`}
         placeholder="blur"
         blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAQAAACTbf5ZAAAAiklEQVR42u3PMQEAAAwCoNm/9Cr4Cw3IjYmwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsHDrASUpAHnJhbktAAAAAElFTkSuQmCC"
+        className="overflow-clip"
       />
     );
   }

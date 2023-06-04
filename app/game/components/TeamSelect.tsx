@@ -44,16 +44,19 @@ const TeamSelect: React.FC<TeamSelectProps> = ({ team }) => {
         </div>
       </div>
       {pickPhase.map((phase) => (
-        <div key={`phase-${phase}`} className="flex-1">
+        <div key={`phase-${phase}`} className="h-1/6">
           <div
             className={`
               border-2
               ${phase === game.game.phase ? "bg-neutral-500 animate-pulse" : ""}
+              overflow-hidden
+              w-full
+              h-full
             `}
           >
             <ChampImg
               champId={game.game.selected[phase]}
-              type="square"
+              type="horizon"
               alt="team"
             />
           </div>
