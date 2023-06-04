@@ -23,7 +23,7 @@ const TeamSelect: React.FC<TeamSelectProps> = ({ team }) => {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center w-full h-full">
       <div id={`${team}-pick`} className="">
         <div className="flex flex-row">
           {banPhase.map((phase) => (

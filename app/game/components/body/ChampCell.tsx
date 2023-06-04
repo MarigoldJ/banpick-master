@@ -9,7 +9,7 @@ interface ChampSelectCellProps {
   champ: ChampType;
 }
 
-const ChampSelectCell: React.FC<ChampSelectCellProps> = ({ champ }) => {
+const ChampCell: React.FC<ChampSelectCellProps> = ({ champ }) => {
   const game = useGame();
 
   const handleClick = () => {
@@ -40,4 +40,4 @@ const ChampSelectCell: React.FC<ChampSelectCellProps> = ({ champ }) => {
   );
 };
 
-export default ChampSelectCell;
+export default ChampCell;
