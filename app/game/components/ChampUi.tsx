@@ -11,10 +11,10 @@ const DynamicChampSelect = dynamic(() => import("./ChampSelect"), {
 
 const ChampUi = () => {
   return (
-    <div className="flex flex-row justify-between w-full p-5">
-      <TeamSelect />
+    <div className="flex flex-row">
+      <TeamSelect team="blue" />
       <DynamicChampSelect version={"13.10.1"} />
-      <TeamSelect />
+      <TeamSelect team="red" />
     </div>
   );
 };

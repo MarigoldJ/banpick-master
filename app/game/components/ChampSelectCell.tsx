@@ -1,15 +1,41 @@
+"use client";
+
 import { ChampType } from "@/app/types";
 import ChampImg from "./ChampImg";
+import useGame from "@/app/hooks/useGame";
+import { useState } from "react";
 
 interface ChampSelectCellProps {
   champ: ChampType;
 }
 
 const ChampSelectCell: React.FC<ChampSelectCellProps> = ({ champ }) => {
+  const game = useGame();
+
+  const handleClick = () => {
+    if (1 <= game.game.phase && game.game.phase <= 20) {
+      if (!game.game.selected.includes(champ.id)) {
+        game.onSelect(champ.id);
+      }
+    }
+  };
+
   return (
-    <div className="col-span-1 flex flex-col items-center hover:bg-white hover:opacity-50 hover:cursor-pointer transition">
-      <ChampImg champId={champ.id} type="square" />
-      <div className="text-center font-semibold">{champ.name}</div>
+    <div
+      className={`
+        col-span-1 flex flex-col items-center transition
+        ${
+          game.game.selected.includes(champ.id)
+            ? "opacity-50"
+            : "hover:bg-white hover:opacity-50 hover:cursor-pointer"
+        }
+      `}
+      onClick={handleClick}
+    >
+      <ChampImg champId={champ.id} type="square" alt="champselect" />
+      <div className="text-center font-semibold text-xs md:text-sm">
+        {champ.name}
+      </div>
     </div>
   );
 };
