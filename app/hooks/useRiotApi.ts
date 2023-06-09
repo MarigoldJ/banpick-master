@@ -22,9 +22,7 @@ const useRiotApi = () => {
 
   // Get Champion List of Selected Patch Version
   const getChampList = async (version: string) => {
-    const res = await axios.get("/api/riot/champ", {
-      baseURL: process.env.NODE_ENV === "development" ? "" : "/banpick-master",
-    });
+    const res = await axios.get("/api/riot/champ");
     const result = res.data.data.data as Object;
 
     return Object.values(result).sort((a: ChampType, b: ChampType) => {
