@@ -6,7 +6,7 @@ interface ModeRadioProps {
 
 const ModeRadio: React.FC<ModeRadioProps> = ({ register }) => {
   return (
-    <div>
+    <div className="flex flex-row justify-around">
       <label htmlFor="mode-single">
         <input
           id="single"
@@ -17,12 +17,13 @@ const ModeRadio: React.FC<ModeRadioProps> = ({ register }) => {
         Single
       </label>
 
-      <label htmlFor="mode-multi">
+      <label htmlFor="mode-multi" className="line-through">
         <input
           id="multi"
           {...register("mode", { required: true })}
           type="radio"
           value="multi"
+          disabled
         />
         Multi
       </label>
