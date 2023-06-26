@@ -1,8 +1,8 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import GameHeader from "./components/GameHeader";
-import GameBody from "./components/GameBody";
+import GameHeader from "../components/GameHeader";
+import GameBody from "../components/GameBody";
 
 export default function Page() {
   const params = useSearchParams();
