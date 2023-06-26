@@ -6,6 +6,7 @@ import SubmitButton from "./SubmitButton";
 import TeamInput from "./TeamInput";
 import { useRouter } from "next/navigation";
 import ModeRadio from "./ModeRadio";
+import useGame from "../hooks/useGame";
 
 const TeamForm = () => {
   const {
@@ -20,8 +21,12 @@ const TeamForm = () => {
     },
   });
   const router = useRouter();
+  const initializeGame = useGame((state) => state.initialize);
 
   const onSubmit: SubmitHandler<FieldValues> = (data: FieldValues) => {
+    // 현재 게임 상태 초기화.
+    initializeGame();
+
     if (data.mode === "single") {
       return router.push(
         `/game/single?blueName=${data.blueName}&redName=${data.redName}`
