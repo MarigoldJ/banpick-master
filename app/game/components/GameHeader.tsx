@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ blueName, redName }) => {
       `}
       >
         <PhaseCounter />
-        <Timer startSeconds={30} />
+        <Timer />
       </div>
 
       <div className="text-3xl font-bold text-red-800">{redName}</div>
