@@ -5,6 +5,7 @@ import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import SubmitButton from "./SubmitButton";
 import TeamInput from "./TeamInput";
 import { useRouter } from "next/navigation";
+import ModeRadio from "./ModeRadio";
 
 const TeamForm = () => {
   const {
@@ -15,16 +16,21 @@ const TeamForm = () => {
     defaultValues: {
       blueName: "",
       redName: "",
+      mode: "single",
     },
   });
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FieldValues> = (data: FieldValues) => {
-    // TODO: 다중 접속 가능한 밴픽 게임페이지로 연결하는 기능 추가.
+    if (data.mode === "single") {
+      return router.push(
+        `/game/single?blueName=${data.blueName}&redName=${data.redName}`
+      );
+    }
 
-    return router.push(
-      `/game?blueName=${data.blueName}&redName=${data.redName}`
-    );
+    // TODO: 다중 접속 가능한 밴픽 게임페이지로 연결하는 기능 추가.
+    if (data.mode === "multi") {
+    }
   };
 
   return (
@@ -45,6 +51,7 @@ const TeamForm = () => {
         register={register}
         errors={errors}
       />
+      <ModeRadio register={register} />
       <SubmitButton label="밴픽 시작하기" onClick={handleSubmit(onSubmit)} />
     </div>
   );
