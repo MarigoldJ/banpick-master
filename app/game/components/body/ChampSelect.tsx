@@ -6,6 +6,7 @@ import { ChampType } from "@/app/types";
 import { useEffect, useState } from "react";
 import ChampCell from "./ChampCell";
 import useGame from "@/app/hooks/useGame";
+import SubmitButton from "@/app/components/SubmitButton";
 
 interface ChampSelectProps {
   version: string;
@@ -23,8 +24,25 @@ const ChampSelect: React.FC<ChampSelectProps> = ({ version }) => {
     });
   }, [version]);
 
-  const handleClick = () => {
+  const handleNextBtn = () => {
+    if (game.game.selected[game.game.phase]) {
+      game.onNext();
+    }
+  };
+
+  const handleReadyBtn = () => {
+    // TODO: add code for multi mode.
     game.onNext();
+  };
+
+  const nextButton = (phase: number) => {
+    if (1 <= phase && phase <= 20) {
+      return <SubmitButton label="Next Phase" onClick={handleNextBtn} />;
+    } else if (phase === 0) {
+      return <SubmitButton label="Ready" onClick={handleReadyBtn} />;
+    } else {
+      return <></>;
+    }
   };
 
   return (
@@ -38,9 +56,7 @@ const ChampSelect: React.FC<ChampSelectProps> = ({ version }) => {
         ))}
       </div>
       <div className="mt-5 flex flex-col items-center">
-        <button className="p-2 border-2 flex-none " onClick={handleClick}>
-          Next Phase
-        </button>
+        {nextButton(game.game.phase)}
       </div>
     </div>
   );
