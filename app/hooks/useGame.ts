@@ -7,10 +7,11 @@ interface GameStore {
   onSelect: (champId: string) => void;
   onBlueReady: () => void;
   onRedReady: () => void;
-  onSubmit: () => void;
+  initialize: () => void;
+  loadGame: (game: GameType) => void;
 }
 
-const initialGame: GameType = {
+const initialGame = (): GameType => ({
   isBlueReady: false,
   isRedReady: false,
   phase: 0,
@@ -18,12 +19,18 @@ const initialGame: GameType = {
   redName: "",
   lastTime: Date.now(),
   selected: Array.from({ length: 21 }, () => ""),
-};
+});
 
 const useGame = create<GameStore>((set) => ({
-  game: initialGame,
+  game: initialGame(),
   onNext: () =>
-    set((state) => ({ game: { ...state.game, phase: state.game.phase + 1 } })),
+    set((state) => ({
+      game: {
+        ...state.game,
+        phase: state.game.phase + 1,
+        lastTime: Date.now(),
+      },
+    })),
   onSelect: (champId) =>
     set((state) => {
       state.game.selected[state.game.phase] = champId;
@@ -39,7 +46,8 @@ const useGame = create<GameStore>((set) => ({
       game: { ...state.game, isRedReady: !state.game.isRedReady },
     }));
   },
-  onSubmit: () => {},
+  initialize: () => set(() => ({ game: initialGame() })),
+  loadGame: (game) => set(() => ({ game: game })),
 }));
 
 export default useGame;
