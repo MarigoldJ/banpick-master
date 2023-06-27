@@ -31,7 +31,13 @@ const TeamSelect: React.FC<TeamSelectProps> = ({ team }) => {
               key={`phase-${phase}`}
               className={`
               border-2
-              ${phase === game.game.phase ? "bg-neutral-500 animate-pulse" : ""}
+              ${
+                phase === game.game.phase
+                  ? team === "blue"
+                    ? "bg-blue-800 animate-pulse"
+                    : "bg-red-800 animate-pulse"
+                  : ""
+              }
             `}
             >
               <ChampImg
