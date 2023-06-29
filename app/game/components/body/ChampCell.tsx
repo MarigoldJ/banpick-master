@@ -26,7 +26,7 @@ const ChampCell: React.FC<ChampSelectCellProps> = ({ champ }) => {
         col-span-1 flex flex-col items-center transition
         ${
           game.game.selected.includes(champ.id)
-            ? "opacity-50"
+            ? "brightness-50 grayscale"
             : "hover:bg-white hover:opacity-50 hover:cursor-pointer"
         }
       `}
