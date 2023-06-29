@@ -14,6 +14,7 @@ interface ChampSelectProps {
 
 const ChampSelect: React.FC<ChampSelectProps> = ({ version }) => {
   const [champList, setChampList] = useState<Array<ChampType>>([]);
+  const [searchName, setSearchName] = useState<string>("");
 
   const riotApi = useRiotApi();
   const game = useGame();
@@ -23,6 +24,12 @@ const ChampSelect: React.FC<ChampSelectProps> = ({ version }) => {
       setChampList(newChampList);
     });
   }, [version]);
+
+  const isStartWithSearchName = (champ: ChampType) =>
+    champ.name.startsWith(searchName);
+  const handleSearch: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    setSearchName(event.target.value);
+  };
 
   const handleNextBtn = () => {
     if (game.game.selected[game.game.phase]) {
@@ -48,10 +55,17 @@ const ChampSelect: React.FC<ChampSelectProps> = ({ version }) => {
   return (
     <div className="flex flex-col">
       <div className="text-neutral-300 text-center">Patch v{version}</div>
+      <div id="searchbox" className="flex justify-center">
+        <input
+          className="p-4 m-2 border-2 rounded-md outline-none transition focus:border-black"
+          onChange={handleSearch}
+          value={searchName}
+        />
+      </div>
       {/* add SearchBox */}
       <div className="mx-2 pt-10 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-7 gap-5 h-[60vh] overflow-y-scroll max-w-4xl">
         {/* add ChampCell */}
-        {champList.map((champData) => (
+        {champList.filter(isStartWithSearchName).map((champData) => (
           <ChampCell champ={champData} key={`cell-${champData.id}`} />
         ))}
       </div>
